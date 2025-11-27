@@ -32,7 +32,7 @@ You should see:
 ### Option A: Use the Test Page
 1. Open `test.html` in Chrome (File → Open File)
 2. Click on any text input
-3. Look for the sparkle icon ✨
+3. Look for the sparkle icon 
 4. Click it to correct the text
 
 ### Option B: Test on Any Website

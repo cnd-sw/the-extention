@@ -170,7 +170,7 @@ def health():
 
 if __name__ == '__main__':
     print("=" * 50)
-    print("🚀 Antigravity Grammar Correction Server")
+    print("Antigravity Grammar Correction Server")
     print("=" * 50)
     print("Server running on: http://localhost:5001")
     print("Ready to correct grammar!")

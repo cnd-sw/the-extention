@@ -2,7 +2,7 @@
 
 The extension now corrects REAL grammar mistakes! Here are examples:
 
-## ✅ Spelling Corrections
+##  Spelling Corrections
 
 | Before | After |
 |--------|-------|
@@ -11,7 +11,7 @@ The extension now corrects REAL grammar mistakes! Here are examples:
 | `seperate items` | `Separate items.` |
 | `occured yesterday` | `Occurred yesterday.` |
 
-## ✅ Contractions & Informal Language
+##  Contractions & Informal Language
 
 | Before | After |
 |--------|-------|
@@ -21,7 +21,7 @@ The extension now corrects REAL grammar mistakes! Here are examples:
 | `wanna go there` | `Want to go there.` |
 | `its gonna be great` | `It is going to be great.` |
 
-## ✅ Subject-Verb Agreement
+##  Subject-Verb Agreement
 
 | Before | After |
 |--------|-------|
@@ -30,7 +30,7 @@ The extension now corrects REAL grammar mistakes! Here are examples:
 | `she are happy` | `She is happy.` |
 | `I is ready` | `I am ready.` |
 
-## ✅ Articles (a vs an)
+##  Articles (a vs an)
 
 | Before | After |
 |--------|-------|
@@ -39,7 +39,7 @@ The extension now corrects REAL grammar mistakes! Here are examples:
 | `a elephant` | `An elephant.` |
 | `an book` | `A book.` |
 
-## ✅ Capitalization
+##  Capitalization
 
 | Before | After |
 |--------|-------|
@@ -47,7 +47,7 @@ The extension now corrects REAL grammar mistakes! Here are examples:
 | `hello. how are you` | `Hello. How are you.` |
 | `what is this. i dont know` | `What is this. I do not know.` |
 
-## ✅ Punctuation
+##  Punctuation
 
 | Before | After |
 |--------|-------|
@@ -56,7 +56,7 @@ The extension now corrects REAL grammar mistakes! Here are examples:
 | `how are you` | `How are you?` |
 | `hello.how are you` | `Hello. How are you.` |
 
-## ✅ Filler Word Removal (Professional Mode)
+##  Filler Word Removal (Professional Mode)
 
 | Before | After |
 |--------|-------|
@@ -65,7 +65,7 @@ The extension now corrects REAL grammar mistakes! Here are examples:
 | `its literally amazing` | `It is amazing.` |
 | `just simply do it` | `Do it.` |
 
-## ✅ Complete Examples
+##  Complete Examples
 
 ### Example 1: Casual Chat
 **Before:**
@@ -117,11 +117,11 @@ what is the best way to do this. how can i improve
 What is the best way to do this? How can I improve?
 ```
 
-## 🎯 Test These Yourself!
+##  Test These Yourself!
 
 Copy any of the "Before" examples into a text field and click the sparkle icon!
 
-## 🔧 Modes
+##  Modes
 
 ### Professional Mode (Default)
 - Expands all contractions

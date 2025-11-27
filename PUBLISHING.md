@@ -4,13 +4,13 @@
 
 Your extension currently requires a **local Python server** running on `localhost:5001`. This means:
 
-- ❌ **Cannot be published to Chrome Web Store as-is** (users can't run the server)
-- ✅ **Works perfectly for personal use**
-- ✅ **Can be shared with tech-savvy friends**
+-  **Cannot be published to Chrome Web Store as-is** (users can't run the server)
+-  **Works perfectly for personal use**
+-  **Can be shared with tech-savvy friends**
 
 ---
 
-## 🎯 Options to Make It Public
+##  Options to Make It Public
 
 ### Option 1: Deploy Server to Cloud (Recommended)
 
@@ -31,7 +31,7 @@ Deploy the Python server to a cloud platform so anyone can use the extension wit
 
 ---
 
-## 📦 Package Extension for Local Distribution
+##  Package Extension for Local Distribution
 
 If you want to share with friends who can run the server:
 
@@ -57,14 +57,14 @@ Users need to:
 
 ---
 
-## 🚀 Full Chrome Web Store Publishing Guide
+##  Full Chrome Web Store Publishing Guide
 
 ### Prerequisites:
 
-1. ✅ Server deployed to cloud (not localhost)
-2. ✅ Extension updated to use cloud URL
-3. ✅ $5 Chrome Web Store developer fee
-4. ✅ Google account
+1.  Server deployed to cloud (not localhost)
+2.  Extension updated to use cloud URL
+3.  $5 Chrome Web Store developer fee
+4.  Google account
 
 ### Step 1: Prepare Extension
 
@@ -103,13 +103,13 @@ Antigravity Grammar Corrector - Professional Text Enhancement
 Transform casual text into professional, grammatically correct content with one click!
 
 Features:
-✨ Real-time grammar correction
-✨ Spelling correction
-✨ Professional tone conversion
-✨ Subject-verb agreement fixes
-✨ Article correction (a/an)
-✨ Punctuation enhancement
-✨ Filler word removal
+ Real-time grammar correction
+ Spelling correction
+ Professional tone conversion
+ Subject-verb agreement fixes
+ Article correction (a/an)
+ Punctuation enhancement
+ Filler word removal
 
 How it works:
 1. Click on any text field
@@ -179,7 +179,7 @@ Contact: your-email@example.com
 
 ---
 
-## 🛠️ Deployment Guide (Railway)
+##  Deployment Guide (Railway)
 
 ### Step 1: Prepare Server for Deployment
 
@@ -231,7 +231,7 @@ In `extension/manifest.json`, update:
 
 ---
 
-## 📋 Pre-Submission Checklist
+##  Pre-Submission Checklist
 
 Before submitting to Chrome Web Store:
 
@@ -249,7 +249,7 @@ Before submitting to Chrome Web Store:
 
 ---
 
-## 💰 Costs
+##  Costs
 
 - Chrome Web Store developer fee: **$5 (one-time)**
 - Railway hosting: **Free tier available** (500 hours/month)
@@ -257,7 +257,7 @@ Before submitting to Chrome Web Store:
 
 ---
 
-## 🆘 Need Help?
+##  Need Help?
 
 If you want to deploy and publish, I can:
 1. Create deployment files
@@ -271,7 +271,7 @@ Just let me know!
 
 ---
 
-## 🎯 Quick Decision Guide
+##  Quick Decision Guide
 
 **Use it yourself only?**
 → You're done! No need to publish.
