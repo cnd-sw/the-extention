@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antigravity Corrector</title>
+  <link rel="stylesheet" href="popup.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <span class="logo-icon">✨</span>
+        <h1>Antigravity</h1>
+      </div>
+      <div class="status-indicator" id="server-status" title="Server Status"></div>
+    </header>
+
+    <main>
+      <div class="card">
+        <div class="setting-row">
+          <div class="setting-info">
+            <h2>Active Correction</h2>
+            <p>Automatically detect and correct text</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="toggle-active" checked>
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="card mode-selector">
+        <h2>Tone Mode</h2>
+        <div class="modes">
+          <button class="mode-btn active" data-mode="professional">Professional</button>
+          <button class="mode-btn" data-mode="concise">Concise</button>
+          <button class="mode-btn" data-mode="casual">Casual</button>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat-item">
+          <span class="stat-value" id="corrections-count">0</span>
+          <span class="stat-label">Corrections</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value" id="saved-words">0</span>
+          <span class="stat-label">Words Saved</span>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>Powered by Local AI</p>
+    </footer>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

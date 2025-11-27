@@ -1,0 +1,44 @@
+/* Floating action button for correction */
+.antigravity-trigger {
+    position: absolute;
+    z-index: 9999;
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.antigravity-trigger.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.antigravity-trigger:hover {
+    transform: scale(1.1);
+}
+
+.antigravity-trigger svg {
+    width: 14px;
+    height: 14px;
+    fill: white;
+}
+
+/* Loading animation */
+@keyframes antigravity-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.antigravity-loading {
+    animation: antigravity-spin 1s linear infinite;
+    opacity: 0.7;
+}
