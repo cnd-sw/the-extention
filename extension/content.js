@@ -3,12 +3,14 @@ let triggerBtn = null;
 
 // Initialize
 function init() {
+    console.log('[Antigravity] Initializing extension...');
     createTriggerButton();
     document.addEventListener('focusin', handleFocus, true);
     document.addEventListener('focusout', handleBlur, true);
     document.addEventListener('input', updateTriggerPosition, true);
     document.addEventListener('scroll', updateTriggerPosition, true);
     window.addEventListener('resize', updateTriggerPosition);
+    console.log('[Antigravity] Extension initialized successfully');
 }
 
 function createTriggerButton() {
@@ -29,23 +31,30 @@ function createTriggerButton() {
 function handleFocus(e) {
     const target = e.target;
 
+    console.log('[Antigravity] Focus event on:', target.tagName, target.type);
+
     // Check if editable
     if (!isEditable(target)) {
+        console.log('[Antigravity] Element is not editable');
         hideTrigger();
         return;
     }
 
     // Check for sensitive fields
     if (isSensitive(target)) {
+        console.log('[Antigravity] Element is sensitive, skipping');
         hideTrigger();
         return;
     }
 
     activeElement = target;
+    console.log('[Antigravity] Active element set');
 
     // Check if extension is active
     chrome.storage.local.get(['isActive'], (result) => {
-        if (result.isActive !== false) { // Default to true
+        const isActive = result.isActive !== false; // Default to true
+        console.log('[Antigravity] Extension active status:', isActive);
+        if (isActive) {
             showTrigger(target);
         }
     });
@@ -62,21 +71,56 @@ function handleBlur(e) {
 }
 
 function isEditable(element) {
-    return element.isContentEditable ||
-        element.tagName === 'TEXTAREA' ||
-        (element.tagName === 'INPUT' && element.type === 'text');
+    // Check for contentEditable
+    if (element.isContentEditable) {
+        return true;
+    }
+
+    // Check for textarea
+    if (element.tagName === 'TEXTAREA') {
+        return true;
+    }
+
+    // Check for input fields with text-based types
+    if (element.tagName === 'INPUT') {
+        const type = element.type ? element.type.toLowerCase() : 'text';
+        const textInputTypes = [
+            'text', 'search', 'url', 'tel',
+            'email', // We'll filter sensitive emails separately
+            'number', 'date', 'datetime-local',
+            'month', 'time', 'week'
+        ];
+        return textInputTypes.includes(type);
+    }
+
+    return false;
 }
 
 function isSensitive(element) {
-    const type = element.type;
+    const type = element.type ? element.type.toLowerCase() : '';
     const name = element.name || '';
     const id = element.id || '';
+    const autocomplete = element.autocomplete || '';
+    const placeholder = element.placeholder || '';
 
-    if (type === 'password' || type === 'email' || type === 'tel') return true;
+    // Always block password fields
+    if (type === 'password') return true;
 
-    const sensitiveKeywords = ['password', 'credit', 'card', 'cvv', 'ssn', 'secret', 'token', 'key'];
-    const identifier = (name + ' ' + id).toLowerCase();
+    // Check autocomplete attribute for sensitive data
+    const sensitiveAutocomplete = ['cc-number', 'cc-csc', 'cc-exp', 'current-password', 'new-password'];
+    if (sensitiveAutocomplete.some(ac => autocomplete.includes(ac))) return true;
 
+    // Check for sensitive keywords in name, id, and placeholder
+    const sensitiveKeywords = [
+        'password', 'passwd', 'pwd',
+        'credit', 'card', 'cvv', 'cvc', 'ccv',
+        'ssn', 'social',
+        'secret', 'token', 'key', 'api',
+        'pin', 'security',
+        'account', 'routing'
+    ];
+
+    const identifier = (name + ' ' + id + ' ' + placeholder).toLowerCase();
     return sensitiveKeywords.some(keyword => identifier.includes(keyword));
 }
 
@@ -104,10 +148,18 @@ function updateTriggerPosition() {
 }
 
 async function correctText() {
-    if (!activeElement) return;
+    if (!activeElement) {
+        console.log('[Antigravity] No active element');
+        return;
+    }
 
-    const originalText = activeElement.value || activeElement.innerText;
-    if (!originalText || originalText.trim().length === 0) return;
+    const originalText = activeElement.value || activeElement.innerText || activeElement.textContent;
+    if (!originalText || originalText.trim().length === 0) {
+        console.log('[Antigravity] No text to correct');
+        return;
+    }
+
+    console.log('[Antigravity] Correcting text:', originalText.substring(0, 50) + '...');
 
     // Show loading state
     triggerBtn.classList.add('antigravity-loading');
@@ -123,18 +175,25 @@ async function correctText() {
                 body: JSON.stringify({ text: originalText, mode: mode })
             });
 
-            if (!response.ok) throw new Error('Server error');
+            if (!response.ok) {
+                throw new Error(`Server responded with status: ${response.status}`);
+            }
 
             const data = await response.json();
             const correctedText = data.corrected;
 
+            console.log('[Antigravity] Corrected text:', correctedText);
+
             if (correctedText && correctedText !== originalText) {
                 applyCorrection(correctedText);
                 updateStats(originalText.length - correctedText.length);
+            } else {
+                console.log('[Antigravity] No changes needed');
             }
 
         } catch (error) {
-            console.error('Antigravity Error:', error);
+            console.error('[Antigravity] Error:', error);
+            alert('Antigravity Error: ' + error.message + '\n\nMake sure the server is running (python server.py)');
         } finally {
             triggerBtn.classList.remove('antigravity-loading');
         }
@@ -143,20 +202,34 @@ async function correctText() {
 
 function applyCorrection(newText) {
     if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
+        // For input and textarea elements
         const start = activeElement.selectionStart;
         const end = activeElement.selectionEnd;
 
         activeElement.value = newText;
 
-        // Try to restore cursor? Might be hard if length changed drastically.
-        // Just put it at the end for now.
+        // Restore cursor position at the end
         activeElement.selectionStart = activeElement.selectionEnd = newText.length;
-    } else {
-        activeElement.innerText = newText;
-    }
 
-    // Trigger input event to notify frameworks (React, etc.)
-    activeElement.dispatchEvent(new Event('input', { bubbles: true }));
+        // Dispatch events for framework compatibility
+        activeElement.dispatchEvent(new Event('input', { bubbles: true }));
+        activeElement.dispatchEvent(new Event('change', { bubbles: true }));
+    } else if (activeElement.isContentEditable) {
+        // For contentEditable elements
+        activeElement.textContent = newText;
+
+        // Move cursor to end
+        const range = document.createRange();
+        const sel = window.getSelection();
+        range.selectNodeContents(activeElement);
+        range.collapse(false);
+        sel.removeAllRanges();
+        sel.addRange(range);
+
+        // Dispatch events
+        activeElement.dispatchEvent(new Event('input', { bubbles: true }));
+        activeElement.dispatchEvent(new Event('change', { bubbles: true }));
+    }
 }
 
 function updateStats(charsSaved) {
@@ -171,4 +244,9 @@ function updateStats(charsSaved) {
     });
 }
 
-init();
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}

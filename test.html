@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antigravity Extension Test Page</title>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .test-section {
+            margin-bottom: 30px;
+        }
+
+        .test-section h2 {
+            color: #444;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="search"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .editable-div {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            min-height: 60px;
+            background: white;
+        }
+
+        .editable-div:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .info {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+
+        .info strong {
+            color: #667eea;
+        }
+
+        .sample-text {
+            background: #fff9e6;
+            border-left: 4px solid #ffc107;
+            padding: 10px;
+            margin-top: 5px;
+            font-size: 13px;
+            color: #666;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🚀 Antigravity Extension Test Page</h1>
+        <p class="subtitle">Test the grammar correction extension on different input types</p>
+
+        <div class="info">
+            <strong>Instructions:</strong> Click on any input field below and you should see a sparkle icon appear.
+            Click the icon to correct the text. Make sure the server is running!
+        </div>
+
+        <div class="test-section">
+            <h2>1. Regular Text Input</h2>
+            <input type="text" placeholder="Type something here..."
+                value="hey can u help me with this im really confused about it">
+            <div class="sample-text">Sample: "hey can u help me with this im really confused about it"</div>
+        </div>
+
+        <div class="test-section">
+            <h2>2. Search Input</h2>
+            <input type="search" placeholder="Search..." value="i wanna find very good restaurants near me">
+            <div class="sample-text">Sample: "i wanna find very good restaurants near me"</div>
+        </div>
+
+        <div class="test-section">
+            <h2>3. Textarea</h2>
+            <textarea
+                placeholder="Write a longer message...">hey there, im writing to let u know that im actually really interested in this project. i think its very cool and i wanna help out if possible. let me know what u think!</textarea>
+            <div class="sample-text">Sample: Multi-line text with casual language and filler words</div>
+        </div>
+
+        <div class="test-section">
+            <h2>4. ContentEditable Div</h2>
+            <div class="editable-div" contenteditable="true">this is basically a contenteditable div that should also
+                work with the extension. try clicking on it and correcting the text!</div>
+            <div class="sample-text">Sample: ContentEditable element (like in rich text editors)</div>
+        </div>
+
+        <div class="test-section">
+            <h2>5. Email Input (Should Work)</h2>
+            <input type="email" placeholder="your@email.com" value="">
+            <div class="sample-text">Note: Email inputs work unless they have sensitive keywords in name/id</div>
+        </div>
+
+        <div class="test-section">
+            <h2>6. Password Input (Should NOT Work - Security)</h2>
+            <input type="password" placeholder="Password" value="test123">
+            <div class="sample-text">Note: Extension should NOT appear on password fields</div>
+        </div>
+
+        <div class="test-section">
+            <h2>7. Professional Email Template</h2>
+            <textarea
+                placeholder="Write an email...">dear sir, im writing to inquire about the position. im very interested and i think im really qualified. please let me know if u need any additional info. thanks alot!</textarea>
+            <div class="sample-text">Sample: Email with professional context but casual language</div>
+        </div>
+
+        <div class="test-section">
+            <h2>8. Technical Text</h2>
+            <textarea
+                placeholder="Technical description...">the api function is basically broken and i cant figure out why. its very frustrating. the bug appears when u call the endpoint with invalid params.</textarea>
+            <div class="sample-text">Sample: Technical content with filler words</div>
+        </div>
+    </div>
+
+    <script>
+        // Log when inputs are focused for debugging
+        document.querySelectorAll('input, textarea, [contenteditable]').forEach(el => {
+            el.addEventListener('focus', () => {
+                console.log('Test Page: Focused on', el.tagName, el.type || 'contenteditable');
+            });
+        });
+    </script>
+</body>
+
+</html>
